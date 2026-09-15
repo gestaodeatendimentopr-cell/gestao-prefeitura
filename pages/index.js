@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { LogIn, Zap, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function Home() {
   const router = useRouter();
@@ -15,7 +13,7 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
         <div className="animate-spin">
-          <Zap size={40} className="text-sky-500" />
+          <span className="text-4xl">⚡</span>
         </div>
       </div>
     );
@@ -33,7 +31,7 @@ export default function Home() {
       <nav className="relative z-10 max-w-7xl mx-auto px-4 py-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-sky-400 to-blue-500 rounded-lg">
-            <Zap size={24} className="text-white" />
+            <span className="text-2xl">⚡</span>
           </div>
           <h1 className="text-2xl font-bold text-white">Gestão de Iluminação</h1>
         </div>
@@ -69,7 +67,7 @@ export default function Home() {
                 onClick={() => router.push('/login')}
                 className="px-8 py-3 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2"
               >
-                <LogIn size={20} />
+                <span>→</span>
                 Entrar na Plataforma
               </button>
               <button
@@ -85,7 +83,7 @@ export default function Home() {
           <div className="space-y-6">
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 hover:bg-white/20 transition-all">
               <div className="flex items-start gap-4">
-                <CheckCircle className="text-green-400 flex-shrink-0" size={24} />
+                <span className="text-2xl">✓</span>
                 <div>
                   <h3 className="text-white font-semibold mb-2">Gestão de Atendimentos</h3>
                   <p className="text-slate-300">Sistema completo para gerenciar solicitações de reparo e manutenção.</p>
@@ -95,7 +93,7 @@ export default function Home() {
 
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 hover:bg-white/20 transition-all">
               <div className="flex items-start gap-4">
-                <CheckCircle className="text-green-400 flex-shrink-0" size={24} />
+                <span className="text-2xl">✓</span>
                 <div>
                   <h3 className="text-white font-semibold mb-2">Modernização e Otimização</h3>
                   <p className="text-slate-300">Acompanhe projetos de LED, controladores inteligentes e economia de energia.</p>
@@ -105,7 +103,7 @@ export default function Home() {
 
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 hover:bg-white/20 transition-all">
               <div className="flex items-start gap-4">
-                <CheckCircle className="text-green-400 flex-shrink-0" size={24} />
+                <span className="text-2xl">✓</span>
                 <div>
                   <h3 className="text-white font-semibold mb-2">Equipes em Campo</h3>
                   <p className="text-slate-300">Coordenação de despachos e acompanhamento em tempo real das operações.</p>
@@ -115,7 +113,7 @@ export default function Home() {
 
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 hover:bg-white/20 transition-all">
               <div className="flex items-start gap-4">
-                <CheckCircle className="text-green-400 flex-shrink-0" size={24} />
+                <span className="text-2xl">✓</span>
                 <div>
                   <h3 className="text-white font-semibold mb-2">Indicadores e KPIs</h3>
                   <p className="text-slate-300">Relatórios detalhados com análise de performance e economia obtida.</p>
