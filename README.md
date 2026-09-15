@@ -1,205 +1,360 @@
-# Gestão de Iluminação Pública - Plataforma de Atendimento para Prefeituras
+# Gestão de Atendimento, Operação e Modernização de Iluminação Pública
 
-Um sistema SaaS completo para gerenciamento de serviços de iluminação pública, modernização de infraestrutura, despacho de equipes e análise de indicadores.
-
-## 🚀 Características Principais
-
-- **Multi-tenant SaaS**: Suporte a múltiplas prefeituras com isolamento de dados
-- **Gestão de Atendimentos**: Sistema completo de service requests com rastreamento
-- **PLAQUETA**: Identificação única para cada ponto de iluminação
-- **Modernização Inteligente**: Histórico de intervenções e economia de energia
-- **Despacho de Equipes**: Mapa interativo e gestão de rotas com KML
-- **Indicadores em Tempo Real**: Dashboard com KPIs e métricas de desempenho
-- **Multi-roles**: Master Admin, Admin, Supervisor, Atendente, Equipe de Campo
-- **Auditoria Completa**: Histórico de todas as alterações no sistema
-
-## 📋 Pré-requisitos
-
-- Node.js 16+ e npm/yarn
-- Conta Vercel
-- Projeto Supabase (PostgreSQL)
-- Conta GitHub
-
-## 🔧 Instalação e Configuração
-
-### 1. Clonar o Repositório
-
-```bash
-git clone https://github.com/seu-usuario/gestao-iluminacao.git
-cd gestao-iluminacao
-```
-
-### 2. Instalar Dependências
-
-```bash
-npm install
-```
-
-### 3. Configurar Variáveis de Ambiente
-
-Crie um arquivo `.env.local` na raiz do projeto:
-
-```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anonima
-
-# API
-NEXT_PUBLIC_API_URL=http://localhost:3000/api
-```
-
-### 4. Configurar Banco de Dados Supabase
-
-1. Acesse o [console Supabase](https://app.supabase.com)
-2. Crie um novo projeto
-3. Vá para SQL Editor
-4. Execute o arquivo `database/schema.sql`
-
-Ou via CLI:
-
-```bash
-supabase link --project-ref seu-projeto-ref
-supabase db push
-```
-
-### 5. Executar Localmente
-
-```bash
-npm run dev
-```
-
-Acesse http://localhost:3000
-
-## 📊 Arquitetura do Banco de Dados
-
-### Tabelas Principais
-
-- **prefeituras**: Dados de cada prefeitura cliente
-- **usuarios**: Usuários e roles do sistema
-- **pontos_censo**: Cada luminária (identificada por PLAQUETA)
-- **atendimentos**: Service requests do sistema
-- **equipes**: Grupos de trabalho
-- **membros_equipe**: Associação de usuários a equipes
-- **despachos**: Designação de tarefas para equipes
-- **despacho_itens**: Itens individuais de um despacho
-- **modernizacoes**: Projetos de modernização
-- **versoes_ponto_censo**: Histórico de mudanças em luminárias
-- **historico_alteracoes**: Auditoria de todas as alterações
-
-### Relacionamentos Key
-
-```
-Prefeitura (1) ──→ (N) Usuários
-Prefeitura (1) ──→ (N) Pontos Censo
-Prefeitura (1) ──→ (N) Atendimentos
-Prefeitura (1) ──→ (N) Equipes
-Equipe (1) ──→ (N) Membros Equipe
-Equipe (1) ──→ (N) Despachos
-Despacho (1) ──→ (N) Despacho Itens
-Atendimento (1) ──→ (N) Despacho Itens
-Ponto Censo (1) ──→ (N) Modernizações
-Ponto Censo (1) ──→ (N) Versões
-```
-
-## 🎨 Estrutura de Componentes
-
-```
-components/
-├── Layout.jsx          # Wrapper principal
-├── Sidebar.jsx         # Navegação lateral
-├── Topbar.jsx          # Barra superior
-└── [Componentes futuros]
-
-pages/
-├── index.js           # Login/Home
-├── dashboard/
-│   └── index.js       # Dashboard principal
-├── atendimentos/
-│   └── index.js       # Gestão de atendimentos
-├── modernizacao/
-│   └── index.js       # Modernizações
-├── despacho/
-│   └── index.js       # Gestão de despachos
-├── indicadores/
-│   └── index.js       # Análise de indicadores
-├── configuracoes/
-│   └── index.js       # Configurações
-└── api/               # Rotas API
-
-lib/
-├── supabase.js        # Cliente Supabase
-└── store.js           # Zustand stores
-```
-
-## 🔐 Segurança
-
-- Autenticação via Supabase Auth
-- Row Level Security (RLS) no PostgreSQL
-- Isolamento de dados por prefeitura
-- Auditoria de todas as operações
-- Variáveis de ambiente para credenciais
-
-## 📱 Status dos Atendimentos
-
-1. **Novo**: Recém-criado, não analisado
-2. **Em análise**: Avaliação do problema
-3. **Aguardando despacho**: Aguardando alocação de equipe
-4. **Despachado**: Equipe designada
-5. **Em execução**: Equipe executando
-6. **Concluído**: Trabalho finalizado
-
-## 🎯 Workflow de Despacho
-
-1. Criar atendimento → Status "Novo"
-2. Analisar → Status "Em análise"
-3. Criar despacho → Atendimentos → Status "Aguardando despacho"
-4. Designar equipe → Status "Despachado"
-5. Equipe executa → Status "Em execução"
-6. Confirmar conclusão → Status "Concluído"
-
-## 📈 KPIs Monitorados
-
-- Taxa de Resolução
-- Tempo Médio de Resolução
-- Satisfação do Cliente (1-5)
-- Economia de Energia (kWh)
-- Custos Evitados (R$)
-- Taxa de Modernização
-- Eficiência de Despacho
-
-## 🚢 Deploy no Vercel
-
-```bash
-# Conectar repositório GitHub ao Vercel
-# As variáveis de ambiente serão configuradas no dashboard Vercel
-
-vercel deploy
-```
-
-## 📖 Documentação Complementar
-
-- [Supabase Docs](https://supabase.com/docs)
-- [Next.js Docs](https://nextjs.org/docs)
-- [Tailwind CSS](https://tailwindcss.com/docs)
-- [Zustand](https://github.com/pmndrs/zustand)
-
-## 🤝 Contribuindo
-
-1. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-2. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-3. Push para a branch (`git push origin feature/AmazingFeature`)
-4. Abra um Pull Request
-
-## 📄 Licença
-
-Propriedade privada - Todos os direitos reservados
-
-## 📞 Suporte
-
-Para suporte, entre em contato através de: gestao@iluminacao.com.br
+**Plataforma comercial multi-tenant para prefeituras e gestores municipais**
 
 ---
 
-**Status**: Em desenvolvimento
-**Última atualização**: Setembro 2024
-**Versão**: 1.0.0-beta
+## 📋 Visão Geral
+
+Sistema profissional de gestão de iluminação pública que permite:
+
+- ✅ **Gestão de Atendimentos** - Registro rápido via PLAQUETA
+- ✅ **Mapas em Tempo Real** - Visualização espacial de problemas
+- ✅ **Despacho Inteligente** - Seleção por polígono e geração KML
+- ✅ **Modernização Controlada** - Histórico com detecção de reserviço
+- ✅ **Indicadores** - Dashboard com gráficos operacionais
+- ✅ **Multi-Tenant** - Suporte a múltiplas prefeituras
+- ✅ **Segurança** - RLS no Supabase, isolamento total de dados
+
+---
+
+## 🛠️ Stack Tecnológico
+
+| Componente | Tecnologia |
+|-----------|-----------|
+| Frontend | Next.js 14.2.3 + React 18.3.1 + Tailwind CSS |
+| Backend | Supabase (PostgreSQL) + API Routes |
+| Autenticação | Supabase Auth |
+| Mapas | Mapbox GL JS |
+| Estado | Zustand 4.4.1 |
+| Hosting | Vercel (Serverless) |
+| Upload | Excel (XLSX) |
+| Export | KML para Google Earth |
+
+---
+
+## 📁 Estrutura de Diretórios
+
+```
+projeto/
+├── pages/                          # Páginas Next.js
+│   ├── _app.js                    # Context e Auth
+│   ├── _document.js               # HTML template
+│   ├── index.js                   # Login
+│   ├── dashboard.js               # Dashboard
+│   ├── atendimentos.js            # Gestão de atendimentos
+│   ├── mapa-atendimento.js        # Mapa com pontos de atendimento
+│   ├── mapa-geral.js              # Mapa com todo o censo
+│   ├── base-censo.js              # Upload e gerenciamento do censo
+│   ├── modernizacao.js            # Modernização de pontos
+│   ├── equipes.js                 # Gestão de equipes
+│   ├── despachos.js               # Gestão de despachos
+│   ├── indicadores.js             # Relatórios e indicadores
+│   ├── historico.js               # Histórico completo
+│   ├── usuarios.js                # Gestão de usuários
+│   ├── configuracoes.js           # Configurações da prefeitura
+│   ├── admin/                     # Painel Master
+│   │   ├── dashboard.js
+│   │   ├── prefeituras.js
+│   │   └── usuarios.js
+│   └── api/                       # API Routes (Serverless)
+│
+├── components/                     # Componentes React reutilizáveis
+│   ├── Layout.js                  # Layout principal com sidebar
+│   ├── MapComponent.js            # Componente de mapa
+│   ├── Table.js                   # Tabela genérica
+│   └── ... (outros componentes)
+│
+├── lib/                            # Utilitários
+│   ├── supabase.js                # Cliente e funções Supabase
+│   ├── auth.js                    # Autenticação
+│   └── kml.js                     # Geração KML
+│
+├── database/                       # Schemas SQL
+│   └── schema.sql                 # Definição de tabelas
+│
+├── styles/                         # CSS
+│   └── globals.css                # Estilos globais
+│
+├── public/                         # Assets estáticos
+│
+├── package.json                   # Dependências
+├── next.config.js                 # Config Next.js
+├── tailwind.config.js             # Config Tailwind
+├── tsconfig.json                  # Config TypeScript
+├── vercel.json                    # Config Vercel
+├── .env.example                   # Variáveis de exemplo
+└── README.md                      # Este arquivo
+```
+
+---
+
+## 🚀 Quick Start
+
+### Pré-requisitos
+- Node.js 18+
+- Conta Supabase
+- Conta Vercel
+- Git + GitHub
+
+### 1. Setup Local
+
+```bash
+# Clone repositório
+git clone https://github.com/gestaodeatendimentopr-cell/gestao-prefeitura.git
+cd gestao-prefeitura
+
+# Instale dependências
+npm install
+
+# Crie .env.local com suas credenciais Supabase
+cp .env.example .env.local
+# Edite .env.local com suas chaves
+```
+
+### 2. Configurar Supabase
+
+Execute no SQL Editor do seu projeto Supabase:
+
+```sql
+-- Ver arquivo INSTRUÇOES_SETUP.md para SQL completo
+```
+
+### 3. Executar Localmente
+
+```bash
+# Desenvolvimento
+npm run dev
+# Acesse: http://localhost:3000
+
+# Build de produção
+npm run build
+
+# Servir produção
+npm start
+```
+
+### 4. Deploy para Vercel
+
+```bash
+# Adicione variables de ambiente no Vercel Dashboard:
+# - supabase_url
+# - supabase_anon_key
+
+# Faça push para GitHub
+git add .
+git commit -m "Initial commit"
+git push origin main
+
+# Vercel fará deploy automaticamente
+# Ou faça redeploy manual no dashboard
+```
+
+---
+
+## 🔐 Configuração de Segurança
+
+### Row Level Security (RLS)
+
+Todas as tabelas têm RLS ativado:
+
+```sql
+-- Usuários só veem dados da sua prefeitura
+CREATE POLICY "isolamento_prefeitura" ON atendimentos
+  FOR SELECT USING (
+    prefeitura_id IN (
+      SELECT id FROM prefeituras WHERE admin_id = auth.uid()
+      UNION
+      SELECT prefeitura_id FROM usuarios_prefeitura WHERE user_id = auth.uid()
+    )
+  );
+```
+
+### Variáveis de Ambiente
+
+Sempre use environment variables para credenciais sensíveis:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+```
+
+⚠️ Nunca commitar `.env.local` ou credenciais
+
+---
+
+## 📊 Fluxos Principais
+
+### Fluxo de Atendimento
+
+```
+1. Munícipe liga → Atendente recebe chamado
+2. Atendente digita PLAQUETA
+3. Sistema busca dados automaticamente na base do censo
+4. Atendente seleciona tipo de problema
+5. Atendente descreve situação
+6. Salvar → Atendimento aparece no mapa
+7. Supervisor visualiza no mapa
+8. Supervisor seleciona área (polígono)
+9. Supervisor atribui para equipe
+10. Sistema gera KML
+11. Equipe de campo recebe KML
+12. Equipe executa serviço
+13. Concluir atendimento
+```
+
+### Fluxo de Modernização
+
+```
+1. Atendente acessa aba Modernização
+2. Digita PLAQUETA
+3. Sistema mostra dados: potência atual, endereço, etc
+4. Atendente escolhe nova potência
+5. Sistema verifica histórico
+6. Se já foi modernizado antes → alerta de RESERVIÇO
+7. Atendente confirma
+8. Sistema atualiza base do censo (com segurança)
+9. Registra no histórico
+10. Disponibiliza download da base atualizada
+```
+
+---
+
+## 📱 Páginas Principais
+
+### Autenticado (Prefeitura)
+
+| Página | Descrição |
+|--------|-----------|
+| Dashboard | Visão geral com cards de KPIs |
+| Atendimentos | Lista completa com filtros |
+| Mapa de Atendimento | Mapa com pontos que têm atendimentos |
+| Mapa Geral | Mapa com todo o censo |
+| Base do Censo | Upload e gerenciamento da planilha |
+| Modernização | Busca e atualização de potências |
+| Equipes | Cadastro e gestão de equipes |
+| Despachos | Criação de despachos para equipes |
+| Indicadores | Gráficos e relatórios |
+| Histórico | Consulta de todas as ações |
+| Usuários | Gestão de usuários da prefeitura |
+| Configurações | Dados da prefeitura e preferências |
+
+### Admin Master
+
+| Página | Descrição |
+|--------|-----------|
+| Dashboard Master | Visão geral de todas as prefeituras |
+| Prefeituras | CRUD de prefeituras |
+| Usuários | Gestão global de usuários |
+| Configurações | Configurações da plataforma |
+
+---
+
+## 🗝️ Conceitos-Chave
+
+### PLAQUETA = Identificador Principal
+
+- Cada ponto de iluminação tem uma PLAQUETA única
+- PLAQUETA é a chave para buscar informações na base do censo
+- Sistema NUNCA altera um ponto pela posição na linha
+- Sempre busca pela PLAQUETA
+
+### Multi-Tenant
+
+- Uma plataforma, múltiplas prefeituras
+- Cada prefeitura = isolamento total de dados
+- Usuário de Prefeitura A nunca vê dados de Prefeitura B
+- Master Admin gerencia tudo
+
+### Modernização com Histórico
+
+- Cada alteração de potência é registrada
+- Histórico nunca é apagado
+- Se ponto foi modernizado mais de uma vez = RESERVIÇO
+- Sistema alerta sobre reserviços
+
+---
+
+## 📖 API Routes
+
+A aplicação possui API Routes serverless em `/pages/api/`:
+
+```
+/api/auth/login
+/api/atendimentos/[id]
+/api/plaquetas/buscar
+/api/modernizacoes/criar
+/api/equipes/listar
+```
+
+Cada rota valida se o usuário pertence à prefeitura correta (RLS).
+
+---
+
+## 🎨 Design System
+
+### Cores
+- **Primária**: Azul (#0284c7)
+- **Background**: Cinza claro (#f9fafb)
+- **Texto**: Preto (#111827)
+- **Sucesso**: Verde (#10b981)
+- **Alerta**: Amarelo (#f59e0b)
+- **Erro**: Vermelho (#ef4444)
+
+### Componentes
+- Cards com sombra e borda sutil
+- Buttons com estados (hover, disabled)
+- Badges para status
+- Tabelas responsivas
+- Modals para confirmação
+
+---
+
+## 🚨 Troubleshooting
+
+### "supabaseUrl is required"
+→ Verificar NEXT_PUBLIC_SUPABASE_URL em Environment Variables do Vercel
+
+### 404 em Produção
+→ Vercel Dashboard → Deployments → Redeploy
+
+### Build falha
+```bash
+rm -rf node_modules .next
+npm install
+npm run build
+```
+
+### Arquivo não é commitado
+→ Verificar .gitignore
+
+---
+
+## 📞 Suporte
+
+Para dúvidas ou issues:
+1. Verificar este README
+2. Verificar arquivo INSTRUÇOES_SETUP.md
+3. Consultar logs do Vercel
+4. Verificar SQL do Supabase
+
+---
+
+## 📄 Licença
+
+Produto comercial. Todos os direitos reservados.
+
+---
+
+## 🎯 Roadmap Futuro
+
+- [ ] Integração com SMS para notificações
+- [ ] App mobile nativo
+- [ ] Relatórios PDF
+- [ ] Integração com sistemas legados
+- [ ] Multilíngue
+- [ ] Dark mode
+
+---
+
+**Desenvolvido com ❤️ para Gestão Pública**

@@ -1,0 +1,276 @@
+================================================================================
+  LISTA COMPLETA - ARQUIVOS PARA COPIAR
+================================================================================
+
+TOTAL: 26 arquivos
+
+Copie todos estes arquivos para seu repositório: C:\projetos\gestao-iluminacao
+
+================================================================================
+DOCUMENTAÇÃO (7 arquivos) - Leia para entender o projeto
+================================================================================
+
+✅ LEIA_PRIMEIRO.md
+   → Comece por este! Instruções em 3 passos simples
+   → Destino: Raiz do repositório (opcional, apenas para referência)
+
+✅ INDICE_ARQUIVOS.md
+   → Índice completo de todos os arquivos
+   → Destino: Raiz do repositório (opcional, apenas para referência)
+
+✅ INSTRUÇOES_SETUP.md
+   → Setup COMPLETO de Supabase com SQL
+   → Leia ANTES de fazer push
+   → Destino: Raiz do repositório (opcional, apenas para referência)
+
+✅ DEPLOYMENT.md
+   → Deployment passo-a-passo
+   → Leia ANTES de fazer push para GitHub
+   → Destino: Raiz do repositório (opcional, apenas para referência)
+
+✅ SUMARIO_COMPLETO.md
+   → Sumário executivo do projeto
+   → Destino: Raiz do repositório (opcional, apenas para referência)
+
+✅ README.md
+   → Documentação técnica da aplicação
+   → Destino: Raiz do repositório (IMPORTANTE)
+
+✅ PROJETO_REFEITO_PLANO.md
+   → Planejamento e decisões arquiteturais
+   → Destino: Raiz do repositório (opcional, apenas para referência)
+
+================================================================================
+CONFIGURAÇÃO (8 arquivos) - Copiar para RAIZ do repositório
+================================================================================
+
+✅ package.json
+   → Define todas as dependências
+   → Destino: Raiz / C:\projetos\gestao-iluminacao\package.json
+   → CRÍTICO!
+
+✅ next.config.js
+   → Configuração Next.js
+   → Destino: Raiz / C:\projetos\gestao-iluminacao\next.config.js
+   → CRÍTICO!
+
+✅ tailwind.config.js
+   → Temas e cores do Tailwind
+   → Destino: Raiz / C:\projetos\gestao-iluminacao\tailwind.config.js
+
+✅ postcss.config.js
+   → Configuração PostCSS
+   → Destino: Raiz / C:\projetos\gestao-iluminacao\postcss.config.js
+
+✅ tsconfig.json
+   → Configuração TypeScript
+   → Destino: Raiz / C:\projetos\gestao-iluminacao\tsconfig.json
+
+✅ vercel.json
+   → Configuração Vercel (EVITA ERRO 404!)
+   → Destino: Raiz / C:\projetos\gestao-iluminacao\vercel.json
+   → CRÍTICO!
+
+✅ .env.example
+   → Template de variáveis de ambiente
+   → Destino: Raiz / C:\projetos\gestao-iluminacao\.env.example
+
+✅ .gitignore
+   → Arquivos a não commitar
+   → Destino: Raiz / C:\projetos\gestao-iluminacao\.gitignore
+
+================================================================================
+CÓDIGO - BIBLIOTECAS (1 arquivo) - Copiar para lib/
+================================================================================
+
+✅ lib-supabase.js
+   → Cliente Supabase e funções utilitárias
+   → Destino: C:\projetos\gestao-iluminacao\lib\supabase.js
+   → RENOMEAR: lib-supabase.js → supabase.js
+   → Criar diretório: lib/ se não existir
+   → CRÍTICO!
+
+================================================================================
+CÓDIGO - PÁGINAS (5 arquivos) - Copiar para pages/
+================================================================================
+
+✅ pages-_app.js
+   → App wrapper e AuthContext
+   → Destino: C:\projetos\gestao-iluminacao\pages\_app.js
+   → RENOMEAR: pages-_app.js → _app.js
+   → Criar diretório: pages/ se não existir
+   → CRÍTICO!
+
+✅ pages-_document.js
+   → Template HTML customizado
+   → Destino: C:\projetos\gestao-iluminacao\pages\_document.js
+   → RENOMEAR: pages-_document.js → _document.js
+
+✅ pages-index.js
+   → Página de login
+   → Destino: C:\projetos\gestao-iluminacao\pages\index.js
+   → RENOMEAR: pages-index.js → index.js
+
+✅ pages-dashboard.js
+   → Dashboard exemplo
+   → Destino: C:\projetos\gestao-iluminacao\pages\dashboard.js
+   → RENOMEAR: pages-dashboard.js → dashboard.js
+
+================================================================================
+CÓDIGO - COMPONENTES (1 arquivo) - Copiar para components/
+================================================================================
+
+✅ components-Layout.js
+   → Layout com sidebar + header
+   → Destino: C:\projetos\gestao-iluminacao\components\Layout.js
+   → RENOMEAR: components-Layout.js → Layout.js
+   → Criar diretório: components/ se não existir
+   → CRÍTICO!
+
+================================================================================
+CÓDIGO - ESTILOS (1 arquivo) - Copiar para styles/
+================================================================================
+
+✅ styles-globals.css
+   → Estilos globais e utility classes
+   → Destino: C:\projetos\gestao-iluminacao\styles\globals.css
+   → RENOMEAR: styles-globals.css → globals.css
+   → Criar diretório: styles/ se não existir
+
+================================================================================
+ESTRUTURA FINAL
+================================================================================
+
+Após copiar todos os arquivos, seu repositório ficará assim:
+
+C:\projetos\gestao-iluminacao\
+├── .git/                              (mantém existente)
+├── node_modules/                      (criará com npm install)
+├── .next/                             (criará com npm run build)
+│
+├── pages/
+│   ├── _app.js                        ✅ (copiado)
+│   ├── _document.js                   ✅ (copiado)
+│   ├── index.js                       ✅ (copiado - login)
+│   ├── dashboard.js                   ✅ (copiado - exemplo)
+│   ├── atendimentos.js                (criar/implementar)
+│   ├── mapa-atendimento.js            (criar/implementar)
+│   ├── base-censo.js                  (criar/implementar)
+│   ├── modernizacao.js                (criar/implementar)
+│   ├── equipes.js                     (criar/implementar)
+│   ├── despachos.js                   (criar/implementar)
+│   ├── indicadores.js                 (criar/implementar)
+│   ├── usuarios.js                    (criar/implementar)
+│   ├── configuracoes.js               (criar/implementar)
+│   ├── historico.js                   (criar/implementar)
+│   ├── admin/                         (criar depois)
+│   └── api/                           (criar depois)
+│
+├── components/
+│   ├── Layout.js                      ✅ (copiado)
+│   ├── MapComponent.js                (criar/implementar)
+│   ├── Table.js                       (criar/implementar)
+│   └── ... (outros)
+│
+├── lib/
+│   ├── supabase.js                    ✅ (copiado)
+│   ├── auth.js                        (criar/implementar)
+│   └── kml.js                         (criar/implementar)
+│
+├── styles/
+│   └── globals.css                    ✅ (copiado)
+│
+├── public/                            (criar vazio)
+│
+├── database/                          (criar depois com SQL)
+│   └── schema.sql
+│
+├── package.json                       ✅ (copiado)
+├── next.config.js                     ✅ (copiado)
+├── tailwind.config.js                 ✅ (copiado)
+├── postcss.config.js                  ✅ (copiado)
+├── tsconfig.json                      ✅ (copiado)
+├── vercel.json                        ✅ (copiado)
+├── .env.example                       ✅ (copiado)
+├── .env.local                         (criar com suas credenciais)
+├── .gitignore                         ✅ (copiado)
+│
+├── README.md                          ✅ (copiado)
+├── INSTRUÇOES_SETUP.md                (referência)
+├── DEPLOYMENT.md                      (referência)
+├── LEIA_PRIMEIRO.md                   (referência)
+└── ... (outros .md de referência)
+
+================================================================================
+PROCESSO DE CÓPIA
+================================================================================
+
+1. Criar diretórios necessários (se não existirem):
+   mkdir pages
+   mkdir components
+   mkdir lib
+   mkdir styles
+   mkdir public
+
+2. Copiar arquivos de configuração para RAIZ:
+   package.json
+   next.config.js
+   tailwind.config.js
+   postcss.config.js
+   tsconfig.json
+   vercel.json
+   .env.example
+   .gitignore
+
+3. Copiar código para diretórios:
+   lib-supabase.js → lib/supabase.js
+   pages-_app.js → pages/_app.js
+   pages-_document.js → pages/_document.js
+   pages-index.js → pages/index.js
+   pages-dashboard.js → pages/dashboard.js
+   components-Layout.js → components/Layout.js
+   styles-globals.css → styles/globals.css
+
+4. Copiar documentação (opcional, para referência):
+   LEIA_PRIMEIRO.md
+   INDICE_ARQUIVOS.md
+   README.md
+   INSTRUÇOES_SETUP.md
+   DEPLOYMENT.md
+   SUMARIO_COMPLETO.md
+
+================================================================================
+PRÓXIMAS ETAPAS
+================================================================================
+
+Após copiar todos os arquivos:
+
+1. Criar .env.local com suas credenciais Supabase
+2. npm install
+3. npm run build (testar se compila)
+4. npm run dev (testar se roda)
+5. Ler INSTRUÇOES_SETUP.md
+6. Criar tabelas no Supabase
+7. Configurar Vercel environment variables
+8. git add .
+9. git push origin main
+10. Vercel redeploy manual
+11. Testar em produção
+
+Veja LEIA_PRIMEIRO.md para instruções passo-a-passo!
+
+================================================================================
+IMPORTANTE!
+================================================================================
+
+✅ Todos os 26 arquivos estão listados acima
+✅ Siga a estrutura de diretórios exatamente
+✅ Renomeie os arquivos conforme indicado (remover prefixos lib-, pages-, etc)
+✅ Leia LEIA_PRIMEIRO.md para começar
+✅ Verifique .gitignore para não esquecer de nenhum arquivo
+
+✅ Copiar TODOS os arquivos ANTES de fazer npm install!
+
+================================================================================
+FIM DA LISTA
+================================================================================
